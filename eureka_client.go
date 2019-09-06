@@ -91,7 +91,7 @@ func (this *EurekaClient) listenCommunicatorResponse() {
 
 					if err == nil {
 						for _, app := range *&allAppsResponse.Applications.Application {
-							var cis [...] ClientInstance
+							cis := make([]ClientInstance, len(app.Instance))
 							for idx, inst := range app.Instance{
 								log.Printf(inst.InstanceID, inst.Status, inst.IPAddr, inst.Port, inst.SecurePort)
 								cis[idx] = ClientInstance{
